@@ -1,0 +1,48 @@
+#1st step
+git config --global user.name YourName
+git config --global user.email YourEmail
+
+#generate ssh key
+cd ~/.ssh
+ssh-keygen -t rsa -C YourEmail
+#at promotion, privider file name as id_rsa
+#then copy contents of id_rsa.pub into github account's ssh key
+#test if ssh work
+ssh -T git@github.com
+
+#init and configure remote
+#init. return the reposary/yourWorking folder. Here is 'tool'
+git init
+git remote add upstream https://github.com/YourName/tool.git
+#update local from server
+git fetch upstream
+git merge upstream/master
+
+#add modification/new files into repository
+git add .
+git commit [-m YourNote-for-update]
+
+#add local repository to remote
+git add remote origin https://github.com/YourName/tool.git
+
+#update. for 1ST TIME only
+git push origin master --force
+
+#after that:
+#to update from server
+git fetch upstream
+git merge upstream/master
+
+#to update changes to server
+git add .
+
+git commit -m 'some message'
+
+git push origin master
+
+
+
+
+
+
+
